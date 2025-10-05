@@ -1,697 +1,242 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Adriana Pamela Caiza Ilbay</title>
+    <title>Curriculum Vitae Virtual | Adriana Pamela Caiza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+        :root {
+            /* Light Theme */
+            --bg-primary: #f0f4f8;
+            --bg-secondary: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --border-color: #e2e8f0;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+        }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        html.dark {
+            /* Dark Theme */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
         }
 
         body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            line-height: 1.5;
-            color: #2d3748;
-            background: #f7fafc;
-        }
-
-        .cv-container {
-            max-width: 800px;
-            margin: 30px auto;
-            background: #ffffff;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        /* === NUEVO DISEÑO DE ENCABEZADO - MODERNO Y OSCURO === */
-        .header {
-            background: #1a202c; /* Fondo oscuro y profesional */
-            color: #f7fafc; /* Texto claro */
-            padding: 2.5rem;
-            position: relative;
-        }
-
-        .header-content {
-            display: flex;
-            flex-direction: column; /* Diseño apilado para móviles */
-            align-items: center;   /* Centrar contenido */
-            gap: 1.5rem;
-            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
         }
         
-        /* Cambia a diseño horizontal en pantallas más grandes */
-        @media (min-width: 768px) {
-            .header-content {
-                flex-direction: row;
-                text-align: left;
-                gap: 2.5rem;
-            }
+        /* Custom styles */
+        .glass-nav {
+            background-color: rgba(240, 244, 248, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
         }
-
-        .profile-photo {
-            width: 140px;
-            height: 180px; /* Altura ajustada para rectángulo */
-            border-radius: 12px; /* Bordes redondeados para rectángulo */
-            border: 5px solid #2563eb; /* Borde con color de acento */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            object-fit: cover;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        html.dark .glass-nav {
+            background-color: rgba(15, 23, 42, 0.8);
         }
-
-        .profile-photo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
+        .nav-link.active {
+            color: var(--accent);
+            font-weight: 600;
         }
-
-        .profile-info {
-            display: flex;
-            flex-direction: column;
+        .typing-cursor {
+            animation: blink 0.7s infinite;
         }
-
-        .name {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            letter-spacing: 0.02em;
-            color: #ffffff;
+        @keyframes blink {
+            50% { opacity: 0; }
         }
-
-        .title {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: #a0aec0; /* Color gris claro para el subtítulo */
-            margin-bottom: 1.25rem;
-            line-height: 1.4;
-            max-width: 450px;
+        .modal-backdrop {
+            transition: opacity 0.3s ease;
         }
-
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem 1.75rem; /* Espaciado vertical y horizontal */
-            font-size: 0.9rem;
-            justify-content: center; /* Centrar en móvil */
-        }
-        
-        @media (min-width: 768px) {
-            .contact-grid {
-                justify-content: flex-start; /* Alinear a la izquierda en desktop */
-            }
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #cbd5e0; /* Color base para texto de contacto */
-            transition: color 0.3s ease;
-        }
-
-        .contact-item:hover {
-            color: #ffffff; /* Iluminar texto al pasar el mouse */
-        }
-
-        .contact-item i {
-            font-size: 1.1rem;
-            color: #2563eb; /* Iconos con color de acento */
-            width: 18px;
-            text-align: center;
+        .modal-content {
             transition: transform 0.3s ease;
         }
-        
-        .contact-item:hover i {
-            transform: scale(1.1);
+        .scroll-to-top {
+            transition: opacity 0.3s, transform 0.3s;
         }
-
-        .contact-item span {
-            font-weight: 400;
-        }
-
-
-        /* Content Layout */
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 280px;
-            gap: 0;
-        }
-
-        .main-section {
-            padding: 2rem;
-        }
-
-        .sidebar {
-            background: #f8fafc;
-            padding: 2rem 1.5rem;
-            border-left: 1px solid #e2e8f0;
-        }
-
-        /* Section Headers - Minimalista con iconos */
-        .section {
-            margin-bottom: 2rem;
-        }
-
         .section-title {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1a202c;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #e2e8f0;
+            gap: 0.75rem; /* 12px */
         }
-
-        .section-icon {
-            font-size: 1rem;
-            color: #2563eb;
-            width: 20px;
-            text-align: center;
-        }
-
-        /* Profile */
-        .profile-text {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: #4a5568;
-            text-align: justify;
-        }
-
-        /* Experience - Minimalista */
-        .experience-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .experience-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .job-header {
-            margin-bottom: 0.5rem;
-        }
-
-        .job-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #1a202c;
-            margin-bottom: 0.25rem;
-        }
-
-        .company-info {
-            font-size: 0.85rem;
-            color: #2563eb;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .job-date {
-            font-size: 0.8rem;
-            color: #718096;
-            font-weight: 400;
-        }
-
-        .job-description {
-            list-style: none;
-            margin-top: 0.75rem;
-        }
-
-        .job-description li {
-            font-size: 0.85rem;
-            color: #4a5568;
-            margin-bottom: 0.4rem;
-            padding-left: 1rem;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        .job-description li::before {
-            content: '•';
+        .timeline-item::before {
+            content: '';
             position: absolute;
-            left: 0;
-            color: #2563eb;
-            font-weight: bold;
+            left: -29.5px;
+            top: 8px;
+            width: 1.25rem; /* 20px */
+            height: 1.25rem; /* 20px */
+            border-radius: 9999px;
+            background-color: var(--bg-secondary);
+            border: 4px solid var(--accent);
         }
-
-        /* Sidebar - Minimalista */
-        .sidebar .section {
-            margin-bottom: 1.5rem;
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
         }
-
-        .sidebar .section-title {
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        /* Education */
-        .education-item {
-            margin-bottom: 1rem;
-            padding: 0.75rem;
-            background: white;
-            border-radius: 6px;
-            border-left: 3px solid #10b981;
-        }
-
-        .degree {
-            font-weight: 600;
-            color: #1a202c;
-            font-size: 0.85rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .institution {
-            font-size: 0.8rem;
-            color: #2563eb;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .year {
-            font-size: 0.75rem;
-            color: #718096;
-        }
-
-        /* Skills - Minimalista */
-        .skill-category {
-            margin-bottom: 1rem;
-        }
-
-        .skill-category-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #1a202c;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            font-size: 0.8rem;
-            color: #4a5568;
-            margin-bottom: 0.3rem;
-            padding: 0.3rem 0.5rem;
-            background: white;
-            border-radius: 4px;
-            border-left: 2px solid #2563eb;
-        }
-
-        /* Projects - Minimalista */
-        .project-item {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #f8fafc;
-            border-radius: 6px;
-            border-left: 3px solid #8b5cf6;
-        }
-
-        .project-title {
-            font-weight: 600;
-            color: #1a202c;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-description {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .project-description li {
-            font-size: 0.8rem;
-            color: #4a5568;
-            margin-bottom: 0.3rem;
-            padding-left: 1rem;
-            position: relative;
-            line-height: 1.4;
-        }
-
-        .project-description li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #8b5cf6;
-            font-weight: bold;
-        }
-
-        .projects-section {
-            margin-top: 14rem;
-        }
-
-        /* Languages */
-        .language-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
-            background: white;
-            border-radius: 4px;
-        }
-
-        .language-name {
-            font-weight: 500;
-            color: #1a202c;
-            font-size: 0.85rem;
-        }
-
-        .language-level {
-            font-size: 0.75rem;
-            color: #718096;
-            background: #edf2f7;
-            padding: 0.2rem 0.5rem;
-            border-radius: 8px;
-        }
-
-        /* Certifications */
-        .cert-list {
-            list-style: none;
-        }
-
-        .cert-list li {
-            font-size: 0.8rem;
-            color: #4a5568;
-            margin-bottom: 0.4rem;
-            padding: 0.4rem 0.5rem;
-            background: white;
-            border-radius: 4px;
-            border-left: 2px solid #f59e0b;
-            line-height: 1.4;
-        }
-
-        /* References */
-        .reference-item {
-            margin-bottom: 0.75rem;
-            padding: 0.75rem;
-            background: white;
-            border-radius: 6px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .reference-name {
-            font-weight: 600;
-            color: #1a202c;
-            font-size: 0.85rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .reference-title {
-            font-size: 0.8rem;
-            color: #2563eb;
-            margin-bottom: 0.25rem;
-        }
-
-        .reference-contact {
-            font-size: 0.75rem;
-            color: #718096;
-        }
-
-        /* Availability */
-        .availability-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .availability-list li {
-            font-size: 0.85rem;
-            color: #4a5568;
-            margin-bottom: 0.4rem;
-            padding-left: 1rem;
-            position: relative;
-            line-height: 1.4;
-        }
-
-        .availability-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #10b981;
-            font-weight: bold;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .name {
-                font-size: 1.8rem;
-            }
-
-            .title {
-                font-size: 1rem;
-            }
-        }
-
-        @media print {
-            body {
-                background: white;
-            }
-
-            .cv-container {
-                box-shadow: none;
-                margin: 0;
-                max-width: none;
-            }
+        .accordion-button svg.arrow {
+            transition: transform 0.4s ease-out;
         }
     </style>
 </head>
-<body>
-    <div class="cv-container">
-        <!-- Header con nuevo diseño moderno -->
-        <div class="header">
-            <div class="header-content">
-                <img src="foto-perfil.jpeg" alt="Adriana Pamela Caiza Ilbay" class="profile-photo" onerror="this.onerror=null;this.src='https://placehold.co/140x180/E2E8F0/1A202C?text=AC';">
+<body class="w-full">
 
-                <div class="profile-info">
-                    <h1 class="name">ADRIANA PAMELA CAIZA ILBAY</h1>
-                    <p class="title">Ingeniera Química | Producción, Calidad, Seguridad Industrial y Medio Ambiente</p>
-
-                    <div class="contact-grid">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>pame_0905@outlook.es</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>0998179109</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Riobamba, Ecuador</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-linkedin"></i>
-                            <span>linkedin.com/in/pame-caiza-958b98311/</span>
-                        </div>
-                    </div>
+    <nav id="navbar" class="glass-nav sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="text-xl font-bold" style="color: var(--accent);">Ingeniería Química</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#sobre-mi" class="nav-link text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-sky-400 transition">Sobre Mí</a>
+                    <a href="#proyectos" class="nav-link text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-sky-400 transition">Proyectos</a>
+                    <a href="#conocimientos" class="nav-link text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-sky-400 transition">Conocimientos</a>
+                    <a href="#experiencia" class="nav-link text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-sky-400 transition">Experiencia</a>
+                    <a href="#habilidades" class="nav-link text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-sky-400 transition">Disponibilidad</a>
+                    <a href="#contacto" class="nav-link text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-sky-400 transition">Contacto</a>
                 </div>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                    <svg id="theme-icon-light" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.464 16.364l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414z"></path></svg>
+                    <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
             </div>
         </div>
+    </nav>
 
-        <div class="content">
-            <!-- Main Section -->
-            <div class="main-section">
-                <!-- Profile -->
-                <div class="section">
-                    <h2 class="section-title">
-                        <i class="fas fa-user section-icon"></i>
-                        PERFIL PROFESIONAL
-                    </h2>
-                    <p class="profile-text">
-                        Ingeniera Química con una sólida base académica y experiencia práctica en principios de ingeniería, control de calidad y optimización de proceso. Mi experiencia reciente en el campo educativo ha fortalecido mis habilidades de comunicación técnica, planificación y resolución de problemas. Soy una profesional proactiva y con gran capacidad de aprendizaje, buscando activamente una oportunidad para aplicar mis conocimientos técnicos y contribuir a los objetivos de una empresa en el sector industrial, de manufactura o ambiental.
+    <header class="relative overflow-hidden" style="background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto py-20 sm:py-24 px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
+                <span class="block" style="color: var(--text-primary);">Adriana Pamela Caiza</span>
+                <span class="block mt-2 text-3xl md:text-5xl" style="color: var(--accent);">
+                    <span id="typing-effect"></span><span class="typing-cursor">|</span>
+                </span>
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-lg" style="color: var(--text-secondary);">
+                Ingeniera Química con una sólida base académica y experiencia práctica en principios de ingeniería, control de calidad y optimización de proceso.
+            </p>
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="Pamela-Caiza_CVvirtual.pdf" download class="inline-flex items-center gap-2 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition duration-300 transform hover:scale-105" style="background-color: var(--accent);">
+                    Descargar CV
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 my-16">
+        
+        <section id="sobre-mi" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title mx-auto">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+                Sobre Mí
+            </h2>
+            <div class="grid md:grid-cols-4 gap-8 items-center">
+                <div class="md:col-span-1">
+                    <img src="foto-perfil.jpeg" alt="Adriana Pamela Caiza" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                </div>
+                <div class="md:col-span-3">
+                    <p class="text-lg mb-6" style="color: var(--text-secondary);">
+                        Soy una Ingeniera Química apasionada por la optimización de procesos y la implementación de tecnologías sostenibles. Con una sólida experiencia en simulación, control de calidad y gestión de proyectos, mi objetivo es aplicar mis conocimientos para impulsar la eficiencia operativa y la innovación en la industria.
                     </p>
-                </div>
-
-                <!-- Experience -->
-                <div class="section">
-                    <h2 class="section-title">
-                        <i class="fas fa-briefcase section-icon"></i>
-                        EXPERIENCIA LABORAL
-                    </h2>
-
-                    <!-- PRIMERA: Dependiente de Farmacia (más reciente) -->
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <h3 class="job-title">Dependiente de Farmacia</h3>
-                            <p class="company-info">Ventas/Comercial, Farmacia Austroinsumed - Riobamba</p>
-                            <p class="job-date">10/2024 - Actualmente</p>
+                    <div class="space-y-4">
+                         <div class="flex items-start gap-4">
+                            <div class="p-2 rounded-full" style="background-color: var(--accent); color: white;"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" /><path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" /><path d="M10 2C6.134 2 3 3.343 3 5s3.134 3 7 3 7-1.343 7-3-3.134-2-7-2z" /></svg></div>
+                            <div>
+                                <h4 class="font-bold">Simulación y Optimización de Procesos</h4>
+                                <p style="color: var(--text-secondary);">Conocimientos en ASPEN HYSYS y MATLAB para modelar y mejorar la eficiencia de plantas industriales.</p>
+                            </div>
                         </div>
-                        <ul class="job-description">
-                            <li>Brindé atención al cliente y dispensación responsable de medicamentos, manteniendo un índice de satisfacción superior al 95%</li>
-                            <li>Coordiné la gestión de pedidos y reposición de mercadería, optimizando los niveles de stock disponible</li>
-                            <li>Ejecuté controles sistemáticos de fechas de vigencia y rotación de productos farmacéuticos</li>
-                            <li>Mantuve el almacenamiento de medicamentos siguiendo normativas sanitarias vigentes y buenas prácticas de farmacia</li>
-                        </ul>
-                    </div>
-
-                    <!-- SEGUNDA: Coordinadora de Producción y Calidad -->
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <h3 class="job-title">Coordinadora de Producción y Calidad</h3>
-                            <p class="company-info">Área de Producción y Gestión de Calidad, Coronel Aromas - Chambo, Ecuador</p>
-                            <p class="job-date">07/2024 - 02/2025</p>
+                         <div class="flex items-start gap-4">
+                            <div class="p-2 rounded-full" style="background-color: var(--accent); color: white;"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg></div>
+                            <div>
+                                <h4 class="font-bold">Gestión de Proyectos y Calidad</h4>
+                                <p style="color: var(--text-secondary);">Certificación en Normas ISO, con experiencia en liderar proyectos desde la concepción hasta la implementación.</p>
+                            </div>
                         </div>
-                        <ul class="job-description">
-                            <li>Incrementé la eficiencia de los procesos de extracción y destilación en un 15%, asegurando el estricto cumplimiento de los parámetros técnicos en el 100% de los lotes</li>
-                            <li>Diseñé e implementé nuevos protocolos de análisis fisicoquímicos, lo que redujo en un 25% los productos no conformes y garantizó el cumplimiento de normativas</li>
-                            <li>Lideré el control de materias primas y productos terminados, elevando la precisión del inventario al 99% mediante la implementación de nuevos registros técnicos</li>
-                            <li>Elaboré informes para la gerencia basados en el seguimiento de indicadores de producción y calidad, cuyas recomendaciones permitieron mejorar el rendimiento general en un 8%</li>
-                        </ul>
                     </div>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <h3 class="job-title">Docente de Ciencias Naturales y Química</h3>
-                            <p class="company-info">Docente de Reemplazo, Unidad Educativa Comunitaria Intercultural Bilingüe "Rio Jubal" - Jubal Centro</p>
-                            <p class="job-date">02/2024 - 06/2024</p>
-                        </div>
-                        <ul class="job-description">
-                            <li>Planifiqué y ejecuté el plan de estudios, adaptando conceptos químicos complejos a diferentes niveles de aprendizaje</li>
-                            <li>Diseñé y supervisé prácticas de laboratorio seguras, asegurando el cumplimiento de los protocolos de manejo de sustancias</li>
-                            <li>Fomenté un ambiente de aprendizaje colaborativo, mejorando la participación estudiantil y las habilidades de resolución de problemas en equipo</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <h3 class="job-title">Docente de Ciencias Naturales y Química</h3>
-                            <p class="company-info">Docente de Reemplazo, Unidad Educativa "Andrés F. Córdova" - Cañar</p>
-                            <p class="job-date">09/2023 - 01/2024</p>
-                        </div>
-                        <ul class="job-description">
-                            <li>Gestioné la enseñanza de química orgánica y ciencias naturales para 40 estudiantes</li>
-                            <li>Establecí prácticas de laboratorio experimentales con enfoque en seguridad industrial</li>
-                            <li>Asesoré proyectos estudiantiles de investigación en ciencias aplicadas</li>
-                        </ul>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <h3 class="job-title">Practicante de Ingeniería Química</h3>
-                            <p class="company-info">Área de Gestión de Calidad, Química Indules - Riobamba</p>
-                            <p class="job-date">10/2020 - 12/2020</p>
-                        </div>
-                        <ul class="job-description">
-                            <li>Revisé y optimicé procesos de control de calidad, resultando en una mejora del 15% en eficiencia operativa</li>
-                            <li>Implementé procedimientos operativos estandarizados (POES) para 5 líneas de producción</li>
-                            <li>Realicé análisis de sustancias químicas garantizando cumplimiento de normas ISO y regulaciones ambientales</li>
-                            <li>Ejecuté mantenimiento preventivo de equipos de laboratorio, reduciendo tiempos de parada en 10%</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Projects -->
-                <div class="section projects-section">
-                    <h2 class="section-title">
-                        <i class="fas fa-flask section-icon"></i>
-                        PROYECTOS
-                    </h2>
-
-                    <div class="project-item">
-                        <h3 class="project-title">Implementación de un Nuevo Sistema de Gestión de Calidad (SGC) | 2024 - 2025</h3>
-                        <ul class="project-description">
-                            <li>Diseñé desde cero un conjunto de protocolos de análisis fisicoquímicos y organolépticos adaptados a las materias primas y productos de la empresa</li>
-                            <li>Implementé los nuevos procedimientos en la línea de producción y en el laboratorio, estableciendo puntos de control críticos</li>
-                            <li>Creé y digitalicé los formatos de registro para un seguimiento preciso y una fácil auditoría</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-item">
-                        <h3 class="project-title">Diseño y Validación de un Proceso Sostenible bajo Normativa ISO | 2021 - 2022</h3>
-                        <ul class="project-description">
-                            <li>Empleé el Diseño Experimental (DoE) y la Metodología Científica para planificar y ejecutar pruebas a escala de laboratorio, analizando la viabilidad de nuevas materias primas</li>
-                            <li>Utilicé software de simulación (Aspen HYSYS y MATLAB) para modelar el proceso, predecir resultados y optimizar las condiciones operativas antes de la fase piloto</li>
-                            <li>Realicé una Evaluación de Impacto Ambiental y un análisis de riesgos para asegurar que el diseño final fuera seguro y sostenible</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Disponibilidad Laboral -->
-                <div class="section">
-                    <h2 class="section-title">
-                        <i class="fas fa-clock section-icon"></i>
-                        DISPONIBILIDAD LABORAL
-                    </h2>
-                    <p style="margin-bottom: 0.75rem; font-style: italic; color: #4a5568;">Inmediata para oportunidades en:</p>
-                    <ul class="availability-list">
-                        <li>Industria Química y Petroquímica</li>
-                        <li>Gestión de Calidad y Procesos</li>
-                        <li>Investigación y Desarrollo</li>
-                        <li>Consultoría Técnica Especializada</li>
-                    </ul>
                 </div>
             </div>
+        </section>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Education -->
-                <div class="section">
-                    <h2 class="section-title">
-                        <i class="fas fa-graduation-cap section-icon"></i>
-                        EDUCACIÓN
-                    </h2>
-
-                    <div class="education-item">
-                        <div class="degree">Maestría en Educación con Mención en Pedagogía en Entornos Digitales</div>
-                        <div class="institution">Universidad Bolivariana del Ecuador</div>
-                        <div class="year">Actualmente</div>
-                    </div>
-
-                    <div class="education-item">
-                        <div class="degree">Ingeniera Química Tercer Nivel</div>
-                        <div class="institution">Escuela Superior Politécnica de Chimborazo</div>
-                        <div class="year">2022</div>
-                    </div>
-
-                    <div class="education-item">
-                        <div class="degree">Ciencias Bachiller</div>
-                        <div class="institution">CAP. Edmundo Chiriboga</div>
-                        <div class="year">2014</div>
-                    </div>
-                </div>
-
-                <!-- Languages -->
-                <div class="section">
-                    <h2 class="section-title">
-                        <i class="fas fa-language section-icon"></i>
-                        IDIOMAS
-                    </h2>
-                    <div class="language-item">
-                        <span class="language-name">Español</span>
-                        <span class="language-level">Nativo</span>
-                    </div>
-                    <div class="language-item">
-                        <span class="language-name">Inglés</span>
-                        <span class="language-level">B1 Intermedio</span>
+        <section id="proyectos" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                Proyectos Destacados
+            </h2>
+            <div class="max-w-4xl mx-auto space-y-4" id="accordion-container">
+                <div class="rounded-lg shadow-sm overflow-hidden border border-l-4 border-l-sky-500" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+                    <button class="accordion-button w-full flex items-center gap-4 text-left p-4 font-semibold">
+                        <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-300">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                           </svg>
+                        </div>
+                        <span class="flex-grow">2021 - 2022 | Diseño y Validación de un Proceso Sostenible</span>
+                        <svg class="w-5 h-5 arrow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 border-t" style="color: var(--text-secondary); border-color: var(--border-color);">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Empleé el Diseño Experimental (DoE) y la Metodología Científica para planificar y ejecutar pruebas a escala de laboratorio, analizando la viabilidad de nuevas materias primas.</li>
+                                <li>Utilicé software de simulación (Aspen HYSYS y MATLAB) para modelar el proceso, predecir resultados y optimizar las condiciones operativas antes de la fase piloto.</li>
+                                <li>Realicé una Evaluación de Impacto Ambiental y un análisis de riesgos para asegurar que el diseño final fuera seguro y sostenible.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                 <div class="rounded-lg shadow-sm overflow-hidden border border-l-4 border-l-emerald-500" style="border-color: var(--border-color); background-color: var(--bg-secondary);">
+                    <button class="accordion-button w-full flex items-center gap-4 text-left p-4 font-semibold">
+                       <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-300">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                           </svg>
+                       </div>
+                        <span class="flex-grow">2024 - 2025 | Implementación de un Sistema de Gestión de Calidad (SGC)</span>
+                        <svg class="w-5 h-5 arrow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 border-t" style="color: var(--text-secondary); border-color: var(--border-color);">
+                             <ul class="list-disc list-inside space-y-2">
+                                <li>Diseñé desde cero un conjunto de protocolos de análisis fisicoquímicos y organolépticos adaptados a las materias primas y productos de la empresa.</li>
+                                <li>Implementé los nuevos procedimientos en la línea de producción y en el laboratorio, estableciendo puntos de control críticos.</li>
+                                <li>Creé y digitalicé los formatos de registro para un seguimiento preciso y una fácil auditoría.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <!-- Skills -->
-                <div class="section">
-                    <h2 class="section-title">
-                        <i class="fas fa-cogs section-icon"></i>
-                        HABILIDADES
-                    </h2>
+        <section id="conocimientos" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+                Conocimientos y Habilidades
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
 
-                    <div class="skill-category">
-                        <h4 class="skill-category-title">Ingeniería en Procesos</h4>
-                        <ul class="skill-list">
+                <!-- Skill Item 1 -->
+                <div class="flex items-center gap-4">
+                    <div class="flex-shrink-0 w-24 h-24 flex items-center justify-center rounded-2xl shadow-lg border-2 bg-sky-100 dark:bg-sky-900/50 border-sky-300 dark:border-sky-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-sky-600 dark:text-sky-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <div class="flex-grow p-5 rounded-2xl shadow-lg bg-white dark:bg-slate-800 border-l-4 border-l-sky-500">
+                        <h3 class="text-lg font-bold mb-2">Ingeniería en Procesos</h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--text-secondary);">
                             <li>Gestión de la Calidad</li>
                             <li>Optimización de Procesos</li>
                             <li>Control Estadístico de Calidad</li>
@@ -700,10 +245,18 @@
                             <li>Calibración de Equipos</li>
                         </ul>
                     </div>
+                </div>
 
-                    <div class="skill-category">
-                        <h4 class="skill-category-title">Investigación y Desarrollo</h4>
-                        <ul class="skill-list">
+                <!-- Skill Item 2 -->
+                <div class="flex items-center gap-4">
+                    <div class="flex-shrink-0 w-24 h-24 flex items-center justify-center rounded-2xl shadow-lg border-2 bg-emerald-100 dark:bg-emerald-900/50 border-emerald-300 dark:border-emerald-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-emerald-600 dark:text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21H16.5M9 3H15M12 3V9M9 21L4.5 9H19.5L15 21" />
+                        </svg>
+                    </div>
+                    <div class="flex-grow p-5 rounded-2xl shadow-lg bg-white dark:bg-slate-800 border-l-4 border-l-emerald-500">
+                        <h3 class="text-lg font-bold mb-2">Investigación y Desarrollo</h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--text-secondary);">
                             <li>Diseño Experimental</li>
                             <li>Análisis de Datos</li>
                             <li>Metodología Científica</li>
@@ -712,24 +265,34 @@
                             <li>Seguridad Industrial</li>
                         </ul>
                     </div>
+                </div>
 
-                    <div class="skill-category">
-                        <h4 class="skill-category-title">Competencias Digitales</h4>
-                        <ul class="skill-list">
+                <!-- Skill Item 3 -->
+                <div class="flex items-center gap-4">
+                    <div class="flex-shrink-0 w-24 h-24 flex items-center justify-center rounded-2xl shadow-lg border-2 bg-violet-100 dark:bg-violet-900/50 border-violet-300 dark:border-violet-700">
+                       <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-violet-600 dark:text-violet-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="flex-grow p-5 rounded-2xl shadow-lg bg-white dark:bg-slate-800 border-l-4 border-l-violet-500">
+                        <h3 class="text-lg font-bold mb-2">Competencias Digitales</h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--text-secondary);">
                             <li>Microsoft Excel Avanzado</li>
                             <li>Análisis Estadístico</li>
                             <li>Herramientas de Simulación</li>
                             <li>AutoCAD (Intermedio)</li>
                             <li>Aspen HYSYS (Conocimiento académico)</li>
                             <li>MATLAB</li>
-                            <li>Plataformas Educativas Digitales</li>
-                            <li>Metodologías E-learning</li>
                         </ul>
                     </div>
+                </div>
 
-                    <div class="skill-category">
-                        <h4 class="skill-category-title">Habilidades Interpersonales</h4>
-                        <ul class="skill-list">
+                <!-- Skill Item 4 -->
+                <div class="flex items-center gap-4">
+                    <div class="flex-shrink-0 w-24 h-24 flex items-center justify-center rounded-2xl shadow-lg border-2 bg-amber-100 dark:bg-amber-900/50 border-amber-300 dark:border-amber-700">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-amber-600 dark:text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <div class="flex-grow p-5 rounded-2xl shadow-lg bg-white dark:bg-slate-800 border-l-4 border-l-amber-500">
+                        <h3 class="text-lg font-bold mb-2">Habilidades Interpersonales</h3>
+                        <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--text-secondary);">
                             <li>Liderazgo de Equipos</li>
                             <li>Comunicación Técnica</li>
                             <li>Gestión de Proyectos</li>
@@ -739,75 +302,254 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Certifications -->
-                <div class="section">
-                    <h2 class="section-title">
-                        <i class="fas fa-certificate section-icon"></i>
-                        CERTIFICADOS
-                    </h2>
-                    <ul class="cert-list">
-                        <li>Fertilización y Nutrición en Cultivos de Cítricos (10h) - Inti Fertilizantes/Gavilon</li>
-                        <li>Normalización Técnica en el Ecuador - Ministerio de Producción/Escuela de la Calidad</li>
-                        <li>El Megamundo de la Nanociencia (10h) - Lebens Capacitaciones/Bionatec</li>
-                        <li>La Industria de los Super Alimentos (4h) - Lebens Capacitaciones/CAGRO</li>
-                        <li>Emprende en la Industria Alimentaria (10h) - Lebens Capacitaciones/CAGRO</li>
-                        <li>VII International Congress Application, Transport and Fluid Storage (40h) - ESPOCH/Universidad Central del Ecuador</li>
-                        <li>II Congreso Internacional de Ingeniería Química (40h) - ESPOCH/Universitatea Babes-Bolyai</li>
-                        <li>International Congress Organic Agriculture</li>
+        <section id="experiencia" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-16 section-title mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm2 2a1 1 0 00-1 1v1a1 1 0 001 1h4a1 1 0 001-1V5a1 1 0 00-1-1H8z" clip-rule="evenodd" /></svg>
+                Experiencia Profesional
+            </h2>
+            <div class="relative pl-8" style="border-left: 2px solid var(--border-color);">
+                <div class="relative mb-12 timeline-item">
+                    <h3 class="text-xl font-bold" style="color: var(--accent);">Dependiente de Farmacia</h3>
+                    <p class="font-semibold" style="color: var(--text-primary);">Farmacia Austroinsumed | Riobamba</p>
+                    <p class="text-sm mb-2" style="color: var(--text-secondary);">Ventas/Comercial</p>
+                    <ul class="list-disc list-inside space-y-1" style="color: var(--text-secondary);">
+                        <li>Brindé atención al cliente y dispensación responsable de medicamentos, manteniendo un índice de satisfacción superior al 95%.</li>
+                        <li>Coordiné la gestión de pedidos y reposición de mercadería, optimizando los niveles de stock disponible.</li>
+                        <li>Ejecuté controles sistemáticos de fechas de vigencia y rotación de productos farmacéuticos.</li>
+                        <li>Mantuve el almacenamiento de medicamentos siguiendo normativas sanitarias vigentes y buenas prácticas de farmacia.</li>
                     </ul>
                 </div>
-
-                <!-- References -->
-                <div class="section">
-                    <h2 class="section-title">
-                        <i class="fas fa-users section-icon"></i>
-                        REFERENCIAS
-                    </h2>
-
-                    <div class="reference-item">
-                        <div class="reference-name">Ing. Mayra Daniela Balarezo Cárdenas</div>
-                        <div class="reference-title">Especialista en Ingeniería de Alimentos</div>
-                        <div class="reference-contact">098 443 2889 | danielab70@hotmail.com</div>
-                    </div>
-
-                    <div class="reference-item">
-                        <div class="reference-name">Ing. Randy Adriana Martinez Vallejo</div>
-                        <div class="reference-title">Ingeniera Comercial</div>
-                        <div class="reference-contact">098 342 4687 | adrischpch@gmail.com</div>
-                    </div>
-
-                    <div class="reference-item">
-                        <div class="reference-name">Ing. Fabián Marcelo Chugñay Cargua</div>
-                        <div class="reference-title">Consultor de Ingeniería en Mantenimiento</div>
-                        <div class="reference-contact">099 266 9991 | fabianchugnay@gmail.com</div>
-                    </div>
+                <div class="relative mb-12 timeline-item">
+                    <h3 class="text-xl font-bold" style="color: var(--accent);">Coordinadora de Producción y Calidad</h3>
+                    <p class="font-semibold" style="color: var(--text-primary);">Coronel Aromas | Chambo, Ecuador</p>
+                    <p class="text-sm mb-2" style="color: var(--text-secondary);">Área de Producción y Gestión de Calidad</p>
+                    <ul class="list-disc list-inside space-y-1" style="color: var(--text-secondary);">
+                        <li>Incrementé la eficiencia de los procesos de extracción y destilación en un 15%, asegurando el estricto cumplimiento de los parámetros técnicos en el 100% de los lotes.</li>
+                        <li>Diseñé e implementé nuevos protocolos de análisis fisicoquímicos, lo que redujo en un 25% los productos no conformes y garantizó el cumplimiento de normativas.</li>
+                        <li>Lideré el control de materias primas y productos terminados, elevando la precisión del inventario al 99% mediante la implementación de nuevos registros técnicos.</li>
+                        <li>Elaboré informes para la gerencia basados en el seguimiento de indicadores de producción y calidad, cuyas recomendaciones permitieron mejorar el rendimiento general en un 8%.</li>
+                    </ul>
+                </div>
+                 <div class="relative mb-12 timeline-item">
+                    <h3 class="text-xl font-bold" style="color: var(--accent);">Docente de Ciencias Naturales y Química</h3>
+                    <p class="font-semibold" style="color: var(--text-primary);">Unidad Educativa Comunitaria Intercultural Bilingüe "Rio Jubal" | Jubal Centro</p>
+                    <p class="text-sm mb-2" style="color: var(--text-secondary);">Docente de Reemplazo</p>
+                    <ul class="list-disc list-inside space-y-1" style="color: var(--text-secondary);">
+                        <li>Planifiqué y ejecuté el plan de estudios, adaptando conceptos químicos complejos a diferentes niveles de aprendizaje.</li>
+                        <li>Diseñé y supervisé prácticas de laboratorio seguras, asegurando el cumplimiento de los protocolos de manejo de sustancias.</li>
+                        <li>Fomenté un ambiente de aprendizaje colaborativo, mejorando la participación estudiantil y las habilidades de resolución de problemas en equipo.</li>
+                    </ul>
+                </div>
+                 <div class="relative mb-12 timeline-item">
+                    <h3 class="text-xl font-bold" style="color: var(--accent);">Docente de Ciencias Naturales y Química</h3>
+                    <p class="font-semibold" style="color: var(--text-primary);">Unidad Educativa "Andrés F. Córdova" | Cañar</p>
+                    <p class="text-sm mb-2" style="color: var(--text-secondary);">Docente de Reemplazo</p>
+                    <ul class="list-disc list-inside space-y-1" style="color: var(--text-secondary);">
+                        <li>Gestioné la enseñanza de química orgánica y ciencias naturales para 40 estudiantes.</li>
+                        <li>Establecí prácticas de laboratorio experimentales con enfoque en seguridad industrial.</li>
+                        <li>Asesoré proyectos estudiantiles de investigación en ciencias aplicadas.</li>
+                    </ul>
+                </div>
+                 <div class="relative mb-12 timeline-item">
+                    <h3 class="text-xl font-bold" style="color: var(--accent);">Practicante de Ingeniería Química</h3>
+                    <p class="font-semibold" style="color: var(--text-primary);">Química Indules | Riobamba</p>
+                    <p class="text-sm mb-2" style="color: var(--text-secondary);">Área de Gestión de Calidad</p>
+                    <ul class="list-disc list-inside space-y-1" style="color: var(--text-secondary);">
+                        <li>Revisé y optimicé procesos de control de calidad, resultando en una mejora del 15% en eficiencia operativa.</li>
+                        <li>Implementé procedimientos operativos estandarizados (POES) para 5 líneas de producción.</li>
+                        <li>Realicé análisis de sustancias químicas garantizando cumplimiento de normas ISO y regulaciones ambientales.</li>
+                        <li>Ejecuté mantenimiento preventivo de equipos de laboratorio, reduciendo tiempos de parada en 10%.</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <section id="habilidades" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-4 section-title mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                    <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0010 15c-2.796 0-5.487-.46-8-1.308z"></path>
+                </svg>
+                Disponibilidad Laboral
+            </h2>
+            <p class="text-center text-lg mb-12" style="color: var(--text-secondary);">
+                Busco activamente oportunidades en las siguientes áreas:
+            </p>
+            <div class="max-w-5xl mx-auto overflow-x-auto shadow-lg rounded-lg">
+                <table class="w-full text-left" style="background: var(--bg-secondary);">
+                    <thead class="text-white" style="background-color: var(--accent);">
+                        <tr>
+                            <th class="p-4 font-bold">Área de Interés</th>
+                            <th class="p-4 font-bold">Descripción de Oportunidades</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td class="p-4 font-semibold align-top">Industria Química y Petroquímica</td>
+                            <td class="p-4" style="color: var(--text-secondary);">Buscando roles en producción, control de procesos y seguridad industrial donde pueda aplicar mis conocimientos en optimización y análisis para mejorar la eficiencia y la seguridad de las operaciones.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td class="p-4 font-semibold align-top">Gestión de Calidad y Procesos</td>
+                            <td class="p-4" style="color: var(--text-secondary);">Interesada en posiciones como Analista de Calidad o Ingeniera de Procesos, enfocada en la implementación de normas ISO, control estadístico y la aplicación de metodologías de mejora continua.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td class="p-4 font-semibold align-top">Investigación y Desarrollo</td>
+                            <td class="p-4" style="color: var(--text-secondary);">Abierta a oportunidades en I+D para contribuir en el diseño experimental, análisis de datos y desarrollo de nuevos productos o tecnologías sostenibles, aplicando una rigurosa metodología científica.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold align-top">Consultoría Técnica Especializada</td>
+                            <td class="p-4" style="color: var(--text-secondary);">Disponible para roles de consultoría que requieran análisis técnico, evaluación de impacto ambiental y optimización de procesos, aportando soluciones innovadoras y eficientes a los desafíos de la industria.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="contacto" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-4 section-title mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
+                Contacto
+            </h2>
+            <p class="text-center max-w-2xl mx-auto mb-8" style="color: var(--text-secondary);">
+                Estoy abierta a nuevas oportunidades y colaboraciones. ¡No dudes en contactarme!
+            </p>
+            <div class="flex justify-center items-center gap-8 flex-wrap">
+                <a href="mailto:pame_0905@outlook.es?subject=Oportunidad%20Profesional%20-%20Contacto%20desde%20CV%20Virtual&body=Hola%20Adriana,%0A%0AHe%20visto%20tu%20CV%20virtual%20y%20estoy%20muy%20interesado/a%20en%20tu%20perfil%20profesional.%0A%0AMe%20gustar%C3%ADa%20conversar%20m%C3%A1s%20al%20respecto.%0A%0ASaludos," class="inline-flex items-center gap-2 font-semibold hover:text-blue-500 dark:hover:text-sky-400 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
+                    Outlook
+                </a>
+                <a href="https://www.linkedin.com/in/pame-caiza-958b98311/" target="_blank" class="inline-flex items-center gap-2 font-semibold hover:text-blue-500 dark:hover:text-sky-400 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    Linkedin
+                </a>
+                 <a href="https://wa.me/593998179109?text=Hola%20Adriana,%20vi%20tu%20CV%20y%20estoy%20interesado%20en%20tu%20perfil." target="_blank" class="inline-flex items-center gap-2 font-semibold hover:text-blue-500 dark:hover:text-sky-400 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.655 4.357 1.846 6.097l-1.117 4.096 4.195-1.1z"/></svg>
+                    Whatsapp
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-8" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <p style="color: var(--text-secondary);">© 2024 Adriana Pamela Caiza. Todos los derechos reservados.</p>
+    </footer>
+    
+            <button id="scroll-to-top" class="fixed bottom-8 right-8 text-white p-3 rounded-full shadow-lg opacity-0 transform translate-y-4" style="background-color: var(--accent);">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Theme Toggler ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIconLight = document.getElementById('theme-icon-light');
+            const themeIconDark = document.getElementById('theme-icon-dark');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+            function setTheme(isDark) {
+                document.documentElement.classList.toggle('dark', isDark);
+                themeIconLight.classList.toggle('hidden', isDark);
+                themeIconDark.classList.toggle('hidden', !isDark);
+            }
+
+            const storedTheme = localStorage.getItem('theme');
+            const initialTheme = storedTheme ? storedTheme === 'dark' : prefersDark.matches;
+            setTheme(initialTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const isDark = !document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                setTheme(isDark);
+            });
+            
+            // --- Typing Effect ---
+            const typingElement = document.getElementById('typing-effect');
+            const words = ["Ingeniera Química", "Optimizadora de Procesos", "Líder de Proyectos", "Analista de Datos"];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function type() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) {
+                    typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    setTimeout(() => isDeleting = true, 2000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+
+                const typeSpeed = isDeleting ? 100 : 150;
+                setTimeout(type, typeSpeed);
+            }
+            if(typingElement) type();
+
+            // --- Scroll to Top ---
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.remove('opacity-0', 'translate-y-4');
+                } else {
+                    scrollToTopBtn.classList.add('opacity-0', 'translate-y-4');
+                }
+            });
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- Active Nav Link on Scroll ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-40% 0px -60% 0px' });
+            sections.forEach(sec => observer.observe(sec));
+            
+            // --- Accordion ---
+            const accordionContainer = document.getElementById('accordion-container');
+            if (accordionContainer) {
+                const accordionButtons = accordionContainer.querySelectorAll('.accordion-button');
+                accordionButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const content = button.nextElementSibling;
+                        const icon = button.querySelector('svg.arrow');
+
+                        const isOpening = !content.style.maxHeight;
+
+                        // Close all accordions first
+                        accordionButtons.forEach(otherButton => {
+                            otherButton.nextElementSibling.style.maxHeight = null;
+                            otherButton.querySelector('svg.arrow').classList.remove('rotate-180');
+                        });
+                        
+                        // If the clicked one was closed, open it
+                        if (isOpening) {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                            icon.classList.add('rotate-180');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
